@@ -1,0 +1,30 @@
+[
+  {
+    "section": "1. Incident Overview",
+    "content": "ID: PB-008\nSeverity: Medium (High if large customer base, financial loss, or brand impact)\nDescription:\nA Customer Phishing incident occurs when attackers impersonate the organization to deceive\ncustomers into revealing credentials, financial details, or personal information via fraudulent\nemails, websites, or messages.\nLog Sources:\n● Customer reports (email, web forms, social media)\n● Phishing intelligence feeds (PhishTank, Safe Browsing)\n● Email security gateways\n● Web proxy and DNS logs\n● Brand monitoring tools\n● SOC and CERT notifications"
+  },
+  {
+    "section": "2. Phase 1: Preparation & Detection",
+    "content": "Trigger:\n● Customer complaints about suspicious emails or websites\n● Detection of look-alike or typosquatted domains\n● Alerts from phishing repositories or CERTs\n● Abnormal referrer traffic to legitimate websites\n● Social media or public reports of fraud\nInitial Readiness Actions:\n● Maintain an inventory of legitimate company domains\n● Deploy SPF, DKIM, and DMARC on all email domains\n● Prepare customer phishing warning pages\n● Maintain takedown contact lists (hosting providers, registrars, ISPs)\n● Monitor cybersquatted domains and brand abuse\n● Define 24/7 customer reporting channels (security@ email, web forms)"
+  },
+  {
+    "section": "3. Phase 2: Analysis & Investigation",
+    "content": "Phishing Analysis:\n● Identify phishing vector (email, SMS, website, social media)\n● Analyze phishing URLs, domains, and hosting infrastructure\n● Capture phishing pages and emails with timestamps\n● Review source code to identify data exfiltration methods\n● Identify credential drop locations (email, API, messaging bots)\nContext & Threat Assessment:\n● Assess scope of customer exposure\n● Determine if credentials or financial data were stolen\n● Identify reuse of legitimate branding or website resources\n● Evaluate reputational and regulatory impact\nCoordination:\n● Engage SOC, Brand Protection, Legal, and PR teams\n● Notify decision-makers for takedown authorization\n● Share IOCs with external partners and CERTs"
+  },
+  {
+    "section": "4. Phase 3: Containment & Neutralization",
+    "content": "Customer Protection:\n● Block phishing URLs via browsers and security vendors\n● Submit phishing URLs to browser blacklists and anti-phishing platforms\n● Report fraudulent emails to spam-reporting services\nCommunication Actions:\n● Publish customer phishing warning page\n● Notify customers through official channels if required\n● Reinforce awareness that credentials are never requested via email\nOperational Containment:\n● Monitor web logs for suspicious referral traffic\n● Prevent reuse of stolen credentials by enforcing MFA (where applicable)"
+  },
+  {
+    "section": "5. Phase 4: Eradication & Recovery",
+    "content": "Phishing Takedown:\n● Contact hosting providers to remove phishing pages\n● Engage domain registrars for domain suspension\n● Disable fraudulent email accounts receiving stolen data\n● Request takedown of redirection services\nRecovery Actions:\n● Verify phishing sites and emails are fully removed\n● Continue monitoring for reappearance\n● Remove warning pages once the threat is neutralized"
+  },
+  {
+    "section": "6. Phase 5: Post-Incident Activity",
+    "content": "Root Cause & Impact Analysis:\n● Identify how attackers impersonated the brand\n● Assess customer impact and financial loss\n● Evaluate response time and takedown efficiency\nImprovements:\n● Improve domain and brand monitoring\n● Enhance customer awareness campaigns\n● Update takedown contact lists and procedures\n● Strengthen email authentication policies\nDocumentation & Closure:\n● Prepare a phishing incident report\n● Document timelines, actions, and IOCs\n● Review coordination effectiveness"
+  },
+  {
+    "section": "7. Escalation Criteria",
+    "content": "Escalate to senior management, legal teams, or regulators if:\n● Large numbers of customers are impacted\n● Financial fraud or identity theft is confirmed\n● Media or reputational damage is likely\n● Regulatory notification is required\n● Phishing campaign is persistent or targeted"
+  }
+]
