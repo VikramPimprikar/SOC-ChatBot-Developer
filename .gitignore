@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Model / cache files
+.cache/
+models/
+
+# OS
+.DS_Store
+
+# Env files
+.env
+
+# Large data
+*.pdf
+*.zip
+*.tar
+*.gz
