@@ -1,26 +1,13 @@
 # Python
 __pycache__/
 *.pyc
-*.pyo
-*.pyd
-
-# Virtual environments
 venv/
-env/
-.venv/
+.env
 
-# Model / cache files
-.cache/
-models/
+# Node / frontend
+node_modules/
+dist/
 
 # OS
 .DS_Store
 
-# Env files
-.env
-
-# Large data
-*.pdf
-*.zip
-*.tar
-*.gz
