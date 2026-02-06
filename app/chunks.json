@@ -1,0 +1,82 @@
+[
+  {
+    "section": "Page 2 - Part 1",
+    "content": "CUSTOMER PHISHING INCIDENT\nRESPONSE\nPREPARATION\nOBJECTIVE: ESTABLISH CONTACTS, DEFINE PROCEDURES, GATHER INFORMATION\nTO SAVE\nTIME DURING AN INCIDENT. ▪ Create a list of all legitimate domains belonging to your company. This will help analyzing the\nsituation and prevent you from starting a takedown procedure on a forgotten legitimate website. ▪ Prepare one web page hosted on your infrastructure, ready to be published anytime, to warn\nyour\ncustomers about an ongoing phishing attack."
+  },
+  {
+    "section": "Page 2 - Part 2",
+    "content": "Prepare and test a clear deployment procedure as\nwell. ▪ Prepare takedown e-mail forms. You will use them for every phishing case, if possible, in\nseveral\nlanguages. This will speed up things when trying to reach the hosting company etc. during the\ntakedown process. ▪ Deploy DKIM, DMARC and SPF to all mail chain. ▪ Monitor cybersquatted domains and content posted on them. Gather contact and abuse\ninformation\nto be prepared in the case you need to use them."
+  },
+  {
+    "section": "Page 2 - Part 3",
+    "content": "Internal contacts\n▪ Maintain a list of all people involved in domain names registration in the company. ▪ Maintain a list of all people accredited to take decisions on cybercrime and eventual actions\nregarding\nphishing. If possible, have a contract mentioning you can take decisions."
+  },
+  {
+    "section": "Page 2 - Part 4",
+    "content": "External contacts\n▪ Have several ways to be reached in a timely manner (24/7 if possible):\no E-Mail address, easy to remember for everyone (ex: security@yourcompany)\no Web forms on your company’s website (location of the form is important, no more than 2 clicks\naway from the main page)\no Visible Twitter account\n▪ Establish and maintain a list of takedown contacts in:\no Hosting companies\no Registry companies\no E-Mail providers\nRaise customer awareness\n● Don’t wait for phishing incidents to communicate with your customers."
+  },
+  {
+    "section": "Page 2 - Part 5",
+    "content": "Raise awareness\nabout phishing\n● fraud, explain what phishing is and make sure your customers know you won’t ever ask\nthem for\n● credentials/banking information by e-mail or on the phone."
+  },
+  {
+    "section": "Page 3 - Part 1",
+    "content": "Raise business line awareness\n● People in business lines must be aware of phishing problems and consider security as a\npriority. ● Therefore, they should apply good practices such as avoid sending links (URL) to\ncustomers and use a\n● signature stating that the company will never ask them for credential/banking information\nonline. IDENTIFICATION\nOBJECTIVE: DETECT THE INCIDENT, DETERMINE ITS SCOPE, AND INVOLVE THE\nAPPROPRIATE PARTIES."
+  },
+  {
+    "section": "Page 3 - Part 2",
+    "content": "Phishing Detection\n▪ Monitor all your points of contact closely (e-mail, web forms, etc.). ▪ Deploy spam traps and try to gather spam from partners/third-parties. ▪ Deploy active monitoring of phishing repositories, like PhishTank and Google Safe Browsing for\nexample. ▪ Monitor any specialized mailing-list you can have access to, or any RSS/Twitter feed, which\ncould be\nreporting phishing cases."
+  },
+  {
+    "section": "Page 3 - Part 3",
+    "content": "▪ Use automated monitoring systems on all of these sources, so that every detection triggers an\nalarm\nfor instant reaction. ▪ Monitor your web logs. Check there is no suspicious referrer bringing people to your website. This is\noften the case when the phishing websites brings the user to the legitimate website after he’s\nbeen\ncheated. Involve appropriate parties\nAs soon as a phishing website is detected, contact the people in your company who are\naccredited to\ntake a decision, if not you."
+  },
+  {
+    "section": "Page 3 - Part 4",
+    "content": "The decision to act on the fraudulent website/e-mail address must be taken as soon as possible,\nwithin\nminutes. Collect evidence\nMake a time-stamped copy of the phishing web pages. Use an efficient tool to do that, like\nHTTrack for\nexample. Don’t forget to take every page of the phishing scheme, not just the first one if there are\nseveral. If needed, take screenshots of the pages."
+  },
+  {
+    "section": "Page 3 - Part 5",
+    "content": "Check the source-code of the phishing website:\n▪ See where the data is exported: either to another web content you cannot access (a PHP script\nusually), sent by e-mail to the fraudster or using an application API (like Telegram for example). ▪ Gather information about the phishing-actor which may be available in URI, source code and\ncredential dropping system (email addresses, Telegram bots, etc). ▪ Do the graphics come from one of your legitimate websites, or are they stored locally?"
+  },
+  {
+    "section": "Page 3 - Part 6",
+    "content": "If possible, in case the graphics are taken from one of your own websites, you"
+  },
+  {
+    "section": "Page 4 - Part 1",
+    "content": "CONTAINMENT\nOBJECTIVE: MITIGATE THE ATTACK’S EFFECTS ON THE TARGETED ENVIRONMENT. Spread the URL of the attack in case of a phishing website:\nUse every way you have to spread the fraudulent URL on every web browser: use the options of\nInternet\nExplorer, Chrome, Safari, Firefox, Netcraft toolbar, Phishing-Initiative, etc. This will prevent the users from accessing the website while you work on the remediation phase. Spread the fraudulent e-mail content on spam-reporting websites/partners."
+  },
+  {
+    "section": "Page 4 - Part 2",
+    "content": "Communicate with your customers:\nDeploy the alert/warning page with information about the current phishing attack. REMEDIATION\nOBJECTIVE: TAKE ACTIONS TO STOP THE PHISHING CAMPAIGN. ▪ In case the fraudulent phishing pages are hosted on a compromised website, try to contact the\nowner of the website."
+  },
+  {
+    "section": "Page 4 - Part 3",
+    "content": "Explain clearly the fraud to the owner, so that he takes appropriate actions:\nremove the fraudulent content, and most of all upgrade the security on it, so that the fraudster\ncannot\ncome back using the same vulnerability. ▪ In any case, also contact the hosting company of the website. Send e-mails to the contact\naddresses\nof the hosting company (generally there is an abuse@hostingcompany) then try to get someone\non\nthe phone, to speed things up."
+  },
+  {
+    "section": "Page 4 - Part 4",
+    "content": "▪ Contact the e-mail hosting company to shut down the fraudulent accounts which receive the\nstolen\ncredentials or credit card information (Either on an “e-mail only” phishing case or on a usual one,\nif\nyou managed to get the destination e-mail address). ▪ In case there is a redirection (the link contained in the e-mail often goes to a redirecting URL)\nalso\ntake down the redirection by contacting the company responsible for the service."
+  },
+  {
+    "section": "Page 4 - Part 5",
+    "content": "▪ In case you get no answer, or no action is taken, don’t hesitate to call back and send e-mails on\na\nregular basis. RECOVERY\nOBJECTIVE: RESTORE THE SYSTEM TO NORMAL OPERATIONS. Assess the end of the phishing case\n▪ Ensure that the fraudulent pages and/or e-mail address are down. ▪ Keep monitoring the fraudulent URL. Sometimes a phishing website can reappear some hours\nlater. In\ncase a redirection is used and not taken down, monitor it very closely."
+  },
+  {
+    "section": "Page 4 - Part 6",
+    "content": "▪ At the end of a phishing campaign, remove the associated warning page from your website."
+  },
+  {
+    "section": "Page 5 - Part 1",
+    "content": "LESSONS LEARNED\nOBJECTIVE: DOCUMENT THE INCIDENT’S DETAILS, DISCUSS LESSONS LEARNED,\nAND\nADJUST PLANS AND DEFENSES. Report\nA crisis report should be written and made available to all of the actors of the crisis management\ncell."
+  },
+  {
+    "section": "Page 5 - Part 2",
+    "content": "The following themes should be described:\n▪ Initial cause of the infection\n▪ Actions and timelines of every important event\n▪ What went right\n▪ What went wrong\n▪ Incident cost\nCapitalize\n▪ Consider what preparation steps you could have taken to respond to the incident faster or more\nefficiently. ▪ Update your contacts-lists and add notes as to what is the most effective way to contact each\ninvolved\nparty."
+  },
+  {
+    "section": "Page 5 - Part 3",
+    "content": "▪ Consider what relationships inside and outside your organization could help you with future\nincidents. ▪ Collaborate with legal teams if a legal action is required."
+  }
+]
