@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
-const BASE_URL = "http://192.168.0.108:8000";
+const BASE_URL = "https://example.com";
 const QUERY_ENDPOINT = `${BASE_URL}/chat`;
 
 function nowTime() {
