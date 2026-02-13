@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
-const BASE_URL = "https://example.com";
+// 🔥 BACKEND INTEGRATION — Azure VM URL
+const BASE_URL = "http://40.81.225.241:8000";
 const QUERY_ENDPOINT = `${BASE_URL}/chat`;
 
 function nowTime() {
