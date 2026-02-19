@@ -1,3 +1,4 @@
+import { auth } from "../firebase";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 const BASE_URL = "https://ragassistant.online";
@@ -138,8 +139,6 @@ export default function MainPage({ user, onLogout }) {
     const start = performance.now();
 
     // 🔐 Get Firebase auth user directly
-    const { getAuth } = await import("firebase/auth");
-    const auth = getAuth();
     const currentUser = auth.currentUser;
 
     if (!currentUser) {
