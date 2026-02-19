@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
-const BASE_URL = "https://example.com";
+const BASE_URL = "https://ragassistant.online";
 const QUERY_ENDPOINT = `${BASE_URL}/chat`;
 
 function nowTime() {
@@ -138,11 +138,18 @@ export default function MainPage({ user, onLogout }) {
     console.log("🚀 Calling:", QUERY_ENDPOINT);
     console.log("📤 Request body:", JSON.stringify({ text: question, top_k: 3 }));
 
-    const res = await fetch(QUERY_ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text: question, top_k: 3 }),
-    });
+    // 🔐 Get Firebase ID token
+const idToken = await user.getIdToken();
+
+const res = await fetch(QUERY_ENDPOINT, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${idToken}`,   
+  },
+  body: JSON.stringify({ text: question, top_k: 3 }),
+});
+
 
     console.log("📊 Response status:", res.status, res.statusText);
     console.log("📊 Response headers:", Object.fromEntries(res.headers.entries()));
