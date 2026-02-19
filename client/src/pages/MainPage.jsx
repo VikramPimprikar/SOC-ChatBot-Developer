@@ -136,54 +136,47 @@ export default function MainPage({ user, onLogout }) {
 
   try {
     const start = performance.now();
-    console.log("🚀 Calling:", QUERY_ENDPOINT);
-    console.log("📤 Request body:", JSON.stringify({ text: question, top_k: 3 }));
 
-    // 🔐 Get Firebase ID token
-const idToken = await user.getIdToken();
+    // 🔐 Get Firebase auth user directly
+    const { getAuth } = await import("firebase/auth");
+    const auth = getAuth();
+    const currentUser = auth.currentUser;
 
-const res = await fetch(QUERY_ENDPOINT, {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    "Authorization": `Bearer ${idToken}`,   
-  },
-  body: JSON.stringify({ text: question, top_k: 3 }),
-});
+    if (!currentUser) {
+      throw new Error("User not authenticated on frontend.");
+    }
 
+    // Force refresh token
+    const idToken = await currentUser.getIdToken(true);
 
-    console.log("📊 Response status:", res.status, res.statusText);
-    console.log("📊 Response headers:", Object.fromEntries(res.headers.entries()));
+    console.log("ID TOKEN EXISTS:", !!idToken);
+
+    const res = await fetch(QUERY_ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${idToken}`,
+      },
+      body: JSON.stringify({ text: question, top_k: 3 }),
+    });
 
     if (!res.ok) {
       const errText = await res.text();
-      console.error("❌ Error response:", errText);
       throw new Error(errText || `HTTP Error ${res.status}`);
     }
 
-    const responseText = await res.text();
-    console.log("📨 Raw response text:", responseText);
-
-    const data = JSON.parse(responseText);
-    console.log("📨 Parsed response data:", data);
-    console.log("📨 Data type:", typeof data);
-    console.log("📨 Data keys:", Object.keys(data));
-    console.log("📨 final_answer exists?", "final_answer" in data);
-    console.log("📨 final_answer value:", data.final_answer);
-    console.log("📨 contexts_used exists?", "contexts_used" in data);
-    console.log("📨 contexts_used value:", data.contexts_used);
+    const data = await res.json();
 
     const end = performance.now();
     setLatencyMs(Math.round(end - start));
 
-    // Extract the answer directly from response
-    const finalAnswer = data?.final_answer || "No answer returned by backend.";
-    const contexts = Array.isArray(data?.contexts_used) ? data.contexts_used : [];
+    const finalAnswer =
+      data?.final_answer || "No answer returned by backend.";
 
-    console.log("✅ Final answer to display:", finalAnswer.substring(0, 100));
-    console.log("✅ Contexts count:", contexts.length);
+    const contexts = Array.isArray(data?.contexts_used)
+      ? data.contexts_used
+      : [];
 
-    // Map contexts into sidebar cards
     const mappedContext = contexts.map((text, idx) => ({
       playbook: `Context ${idx + 1}`,
       section: text,
@@ -196,13 +189,8 @@ const res = await fetch(QUERY_ENDPOINT, {
       ...prev,
       { role: "assistant", text: finalAnswer, time: nowTime() },
     ]);
-
-    console.log("✅ Message added to UI");
-
   } catch (err) {
-    console.error("❌ Full error object:", err);
-    console.error("❌ Error message:", err.message);
-    console.error("❌ Error stack:", err.stack);
+    console.error("AUTH ERROR:", err);
 
     setRetrievedChunks([]);
 
@@ -211,12 +199,7 @@ const res = await fetch(QUERY_ENDPOINT, {
       {
         role: "assistant",
         text:
-          "Backend Integration Failed.\n\n" +
-          "Possible issues:\n" +
-          "1) Backend not running on port 8000\n" +
-          "2) Check browser console for detailed error\n" +
-          "3) CORS not enabled\n" +
-          "4) Response format mismatch\n\n" +
+          "Authentication failed.\n\n" +
           `Error: ${err.message}`,
         time: nowTime(),
       },
@@ -225,6 +208,7 @@ const res = await fetch(QUERY_ENDPOINT, {
     setIsLoading(false);
   }
 }
+
 
   function handleKeyDown(e) {
     if (e.key === "Enter" && !e.shiftKey) {
