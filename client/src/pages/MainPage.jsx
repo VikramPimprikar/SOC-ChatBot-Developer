@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 const BASE_URL = "https://ragassistant.online";
 const QUERY_ENDPOINT = `${BASE_URL}/chat`;
 
+
 function nowTime() {
   const d = new Date();
   return d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
