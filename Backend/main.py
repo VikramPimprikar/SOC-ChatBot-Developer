@@ -1,6 +1,3 @@
-
-
-
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -8,10 +5,6 @@ from dotenv import load_dotenv
 import uuid
 import httpx
 import os
-import requests
-
-
-from app.services.embedding_service import EmbeddingService
 
 # -------------------------
 # ENV
@@ -30,7 +23,7 @@ if not EMBEDDING_API_URL or not RETRIEVAL_API_URL:
 app = FastAPI(title="Knowledge Query Backend API")
 
 # -------------------------
-# CORS (handled by APIM in prod)
+# CORS
 # -------------------------
 app.add_middleware(
     CORSMiddleware,
@@ -41,12 +34,7 @@ app.add_middleware(
 )
 
 # -------------------------
-# SERVICES
-# -------------------------
-embedding_service = EmbeddingService(url=EMBEDDING_API_URL)
-
-# -------------------------
-# TEMP STORE (replace with Redis later)
+# TEMP STORE
 # -------------------------
 RESULT_STORE = {}
 REQUEST_STATUS = {}
@@ -80,22 +68,13 @@ async def query_knowledge_base(payload: dict) -> dict:
             return response.json()
 
     except httpx.ReadTimeout:
-        raise HTTPException(
-            status_code=504,
-            detail="Knowledge base query timed out"
-        )
+        raise HTTPException(status_code=504, detail="Knowledge base query timed out")
 
     except httpx.ConnectError:
-        raise HTTPException(
-            status_code=503,
-            detail="Knowledge base service unavailable"
-        )
+        raise HTTPException(status_code=503, detail="Knowledge base service unavailable")
 
     except Exception as e:
-        raise HTTPException(
-            status_code=500,
-            detail=f"Knowledge base error: {str(e)}"
-        )
+        raise HTTPException(status_code=500, detail=f"Knowledge base error: {str(e)}")
 
 # -------------------------
 # MAIN QUERY ENDPOINT
@@ -108,8 +87,17 @@ async def chat(req: ChatRequest):
     request_id = str(uuid.uuid4())
     REQUEST_STATUS[request_id] = "processing"
 
-    # 1️⃣ Generate embedding
-    embedding = embedding_service.generate(req.text)
+    # 1️⃣ Call embedding service via HTTP
+    try:
+        async with httpx.AsyncClient(timeout=60.0) as client:
+            embed_response = await client.post(
+                EMBEDDING_API_URL,
+                json={"text": req.text}
+            )
+            embed_response.raise_for_status()
+            embedding = embed_response.json()["embedding"]
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Embedding service error: {str(e)}")
 
     # 2️⃣ Build retrieval payload
     payload = {
@@ -118,7 +106,7 @@ async def chat(req: ChatRequest):
         "top_k": req.top_k
     }
 
-    # 3️⃣ Query database-backed retrieval service
+    # 3️⃣ Query retrieval service
     result = await query_knowledge_base(payload)
 
     # 4️⃣ Store result
