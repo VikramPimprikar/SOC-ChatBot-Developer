@@ -27,13 +27,15 @@ app = FastAPI(title="Knowledge Query Backend API")
 # -------------------------
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "https://white-dune-0ce921900.2.azurestaticapps.net"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# -------------------------
+#---------------------
 # TEMP STORE
 # -------------------------
 RESULT_STORE = {}
